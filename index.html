@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Petualangan Globe Bumi 3D: jelajahi bioma, fauna, flora, dan konservasi bersama Kak Geo.">
+  <meta name="theme-color" content="#081426">
+  <title>Petualangan Globe Bumi 3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#tab-tujuan" aria-label="Petualangan Globe Bumi 3D, beranda">
+      <span class="brand-mark" aria-hidden="true">🌍</span>
+      <span>Petualangan <strong>Globe Bumi 3D</strong></span>
+    </a>
+    <nav class="tabs" role="tablist" aria-label="Navigasi aplikasi">
+      <button class="tab-btn active" role="tab" aria-selected="true" data-tab="tujuan">Tujuan</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="materi">Materi</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="globe">Globe 3D (Simulasi)</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="kuis">Kuis</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="lkpd">LKPD</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="kesimpulan">Kesimpulan</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="tab-tujuan" class="tab-panel active" role="tabpanel">
+      <div class="cover">
+        <div class="cover-copy">
+          <span class="eyebrow">🚀 MISI EKSPEDISI GEOGRAFI · KELAS XI</span>
+          <h1>Siap keliling dunia?</h1>
+          <p>Putar globe, temukan penghuni berbagai bioma, lalu cari tahu bagaimana kita bisa menjaga rumah mereka.</p>
+          <button class="primary-btn" data-action="start">Mulai Petualangan <span aria-hidden="true">→</span></button>
+          <p class="cover-note">Didampingi Kak Geo · Belajar sambil menjelajah</p>
+        </div>
+        <div class="cover-orbit" aria-hidden="true"><span>🌏</span><i>🛰️</i></div>
+      </div>
+      <div class="section-wrap">
+        <div class="section-heading"><span class="eyebrow">PETA MISI</span><h2>Tujuan pembelajaran</h2><p>Setiap kartu adalah bekal untuk perjalananmu.</p></div>
+        <div id="objectives" class="card-grid"></div>
+        <article class="feature-card">
+          <span class="eyebrow">🎒 MISI KAMU</span>
+          <h2>Jelajahi, temukan, dan ceritakan kembali</h2>
+          <div class="mission-list">
+            <span>🌿 Kunjungi 8 bioma</span><span>🦁 Temukan 8 wilayah fauna</span>
+            <span>🇮🇩 Jelajahi 3 zona Indonesia</span><span>🧠 Selesaikan kuis</span>
+            <span>📝 Isi LKPD</span>
+          </div>
+          <p><strong>Intinya:</strong> rasa ingin tahu adalah kompas terbaikmu.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="tab-materi" class="tab-panel" role="tabpanel" hidden>
+      <div class="section-wrap">
+        <div class="section-heading"><span class="eyebrow">BEKAL EKSPEDISI</span><h1>Jelajahi materi</h1><p>Pilih topik, baca ringkasannya, lalu lihat lokasinya di globe.</p></div>
+        <div class="material-layout">
+          <nav id="material-nav" class="material-nav" aria-label="Submateri"></nav>
+          <div id="material-content" class="material-content"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-globe" class="tab-panel globe-panel" role="tabpanel" hidden>
+      <div id="globe-stage">
+        <div id="globe-loader" class="globe-loader"><span>🌍</span><strong>Kak Geo sedang menyiapkan globe…</strong><small>Saturnus tidak ikut antre, tenang saja 😄</small></div>
+        <div id="globe-container" aria-label="Globe interaktif"></div>
+        <div class="globe-controls glass">
+          <div class="control-title"><strong>🧭 Kendali ekspedisi</strong><button class="icon-btn" data-action="hide-controls" aria-label="Sembunyikan panel kendali">−</button></div>
+          <label class="search-label" for="place-search">Cari tempat atau spesies</label>
+          <input id="place-search" type="search" placeholder="Contoh: tundra, komodo…" autocomplete="off">
+          <div id="search-results" class="search-results"></div>
+          <div class="toggle-list">
+            <label><input type="checkbox" data-layer="biomes" checked> 🌿 Bioma</label>
+            <label><input type="checkbox" data-layer="fauna" checked> 🐾 Wilayah fauna</label>
+            <label><input type="checkbox" data-layer="lines" checked>〰️ Wallace &amp; Weber</label>
+            <label><input type="checkbox" data-layer="flora"> 🌳 Flora Indonesia</label>
+            <label><input type="checkbox" data-layer="conservation"> 🛡️ Konservasi</label>
+            <label><input type="checkbox" data-layer="insects"> 🦋 Serangga</label>
+          </div>
+          <div class="button-row">
+            <button class="small-btn" data-action="daynight">🌙 Siang / malam</button>
+            <button class="small-btn" data-action="reset-camera">↺ Reset kamera</button>
+            <button class="small-btn" data-action="autorotate">⟳ Putar otomatis</button>
+          </div>
+          <details class="compare-box"><summary>⚖️ Bandingkan dua bioma</summary><div id="compare-controls"></div><div id="compare-result"></div></details>
+          <a class="small-link" href="#gallery">✨ Buka Galeri Spesimen 3D</a>
+        </div>
+        <button id="show-controls" class="show-controls" data-action="show-controls">🧭 Buka kendali</button>
+        <aside id="info-drawer" class="info-drawer glass" aria-label="Kartu informasi" aria-live="polite">
+          <button class="drawer-close icon-btn" data-action="close-drawer" aria-label="Tutup kartu informasi">×</button>
+          <div id="info-content"><p class="empty-info">Pilih penanda di globe untuk membuka kartu penjelajahanmu. 🌟</p></div>
+        </aside>
+        <div id="guide-bubble" class="guide-bubble"><button class="icon-btn" data-action="hide-guide" aria-label="Sembunyikan panduan">×</button><strong>👩‍🚀 Kak Geo</strong><span id="guide-text">Hai, penjelajah! Coba cari bioma atau klik penanda di globe.</span></div>
+        <div class="mission-bar glass">
+          <div><strong>🛂 Paspor Penjelajah</strong><span id="passport-summary">0/8 bioma · 0/8 fauna · 0/3 zona · 0/5 konservasi</span></div>
+          <div class="xp-wrap"><span id="rank-label">Penjelajah Pemula</span><span id="xp-label">0 XP</span><div class="progress-track"><i id="passport-progress"></i></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-kuis" class="tab-panel" role="tabpanel" hidden>
+      <div class="section-wrap quiz-wrap">
+        <div class="section-heading"><span class="eyebrow">CEK KOMPASMU</span><h1>Kuis penjelajah</h1><p>Jawab satu per satu. Kak Geo akan membahas jawabannya setelah kamu memilih.</p></div>
+        <div class="quiz-toolbar">
+          <button class="primary-btn" data-action="quiz-quick">⚡ Kuis Cepat · 10 soal</button>
+          <button class="secondary-btn" data-action="quiz-full">📚 Kuis Lengkap · 21 soal</button>
+          <label class="sound-toggle"><input type="checkbox" id="sound-toggle"> Suara (opsional)</label>
+          <span id="best-score">Skor terbaik: belum ada</span>
+        </div>
+        <div id="quiz-area" class="quiz-card"><p>Pilih mode kuis untuk memulai petualangan berpikir.</p></div>
+        <div id="certificate" class="certificate">
+          <h2>🏅 Sertifikat Penjelajah</h2><label>Nama penjelajah <input id="student-name" type="text" maxlength="60" placeholder="Tulis namamu"></label>
+          <button class="secondary-btn" data-action="print-certificate">Cetak sertifikat</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-lkpd" class="tab-panel" role="tabpanel" hidden>
+      <div id="lkpd-root"></div>
+    </section>
+
+    <section id="tab-kesimpulan" class="tab-panel" role="tabpanel" hidden>
+      <div class="section-wrap">
+        <div class="section-heading"><span class="eyebrow">SEBELUM KEMBALI KE BUMI</span><h1>Bekal yang kita bawa</h1><p>Setiap perjalanan mengajarkan cara melihat alam dengan lebih bijak.</p></div>
+        <div id="conclusion-cards" class="card-grid"></div>
+        <div id="conclusion-passport" class="feature-card"></div>
+        <div class="reflection card-grid">
+          <article class="info-card"><span class="card-kicker">💭 REFLEKSI 1</span><h3>Apa yang paling mengejutkanmu dalam perjalanan ini?</h3><textarea aria-label="Jawaban refleksi satu"></textarea><p><strong>Intinya:</strong> rasa takjub bisa menjadi awal kepedulian.</p></article>
+          <article class="info-card"><span class="card-kicker">🌱 REFLEKSI 2</span><h3>Apa yang bisa kamu lakukan untuk melestarikan keragaman hayati di daerahmu?</h3><textarea aria-label="Jawaban refleksi dua"></textarea><p><strong>Intinya:</strong> tindakan kecil yang dilakukan bersama dapat berarti besar.</p></article>
+          <article class="info-card"><span class="card-kicker">📖 REFLEKSI 3</span><h3>Hubungkan idemu dengan Aktivitas 2.3 dan 2.7 di buku.</h3><textarea aria-label="Jawaban refleksi tiga"></textarea><p><strong>Intinya:</strong> hubungkan pelajaran dengan keadaan di sekitarmu.</p></article>
+        </div>
+        <details class="about-app"><summary>Tentang Aplikasi</summary><div id="about-content"></div></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="specimen-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="specimen-title" hidden>
+    <div class="modal-card specimen-card">
+      <div class="modal-heading"><div><span class="eyebrow">LAB SPESIMEN · THREE.JS R128</span><h2 id="specimen-title">Spesimen 3D</h2></div><button class="icon-btn" data-action="close-specimen" aria-label="Tutup Lab Spesimen">×</button></div>
+      <div id="specimen-stage"><div id="specimen-canvas"></div><div id="specimen-emoji" aria-hidden="true"></div></div>
+      <p id="specimen-fact"></p>
+      <div class="button-row centered"><button class="secondary-btn" data-action="specimen-prev">← Sebelumnya</button><button class="secondary-btn" data-action="specimen-next">Spesimen berikutnya →</button></div>
+    </div>
+  </div>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+  <div id="certificate-print"></div>
+
+  <footer class="site-footer">
+    <p id="footer-citation"></p>
+    <p>Lencana <strong>Pengayaan</strong> menandai informasi tambahan di luar buku. Koordinat dan posisi Garis Wallace–Weber merupakan pendekatan untuk visualisasi edukatif.</p>
+  </footer>
+
+  <!-- Urutan CDN wajib -->
+  <script src="https://unpkg.com/globe.gl"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="data-materi.js"></script>
+  <script src="lkpd.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
